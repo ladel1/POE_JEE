@@ -1,6 +1,7 @@
 package fr.eni.ecole.ihm;
 
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebInitParam;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -8,7 +9,20 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Random;
 
-@WebServlet("/traitement")
+@WebServlet(
+			name = "traitement",
+			urlPatterns = "/traitement",
+			initParams = {
+					@WebInitParam(
+							name="min",
+							value="11"
+							),
+					@WebInitParam(
+							name="max",
+							value="20"
+						)					
+			}			
+		)
 public class TraitementServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private Random rand = new Random();
@@ -17,7 +31,10 @@ public class TraitementServlet extends HttpServlet {
 	
 	@Override
 	public void init() throws ServletException {
-		serverChoice = rand.nextInt(10)+1;	
+		
+		int min = Integer.parseInt(this.getInitParameter("min"));
+		int max = Integer.parseInt(this.getInitParameter("max"));
+		serverChoice = rand.nextInt(min,max+1);	
 		System.out.println(serverChoice);
 	}
 	
