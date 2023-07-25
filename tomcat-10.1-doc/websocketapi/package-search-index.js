@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"jakarta.websocket"},{"l":"jakarta.websocket.server"}]

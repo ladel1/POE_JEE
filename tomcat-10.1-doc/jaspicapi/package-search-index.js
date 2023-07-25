@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"jakarta.security.auth.message"},{"l":"jakarta.security.auth.message.callback"},{"l":"jakarta.security.auth.message.config"},{"l":"jakarta.security.auth.message.module"}]

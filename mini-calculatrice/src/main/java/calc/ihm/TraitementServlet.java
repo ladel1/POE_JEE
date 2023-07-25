@@ -51,6 +51,7 @@ public class TraitementServlet extends HttpServlet {
 				System.out.println("Erreur");
 			}			
 		}
+		response.setHeader("prenom", "Adel");
 		response.setContentType("text/html");
 		response.getWriter().write("<h1> Resultats %.2f </h1>".formatted(results));
 	}
