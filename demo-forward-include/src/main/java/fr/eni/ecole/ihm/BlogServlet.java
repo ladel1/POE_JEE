@@ -18,5 +18,10 @@ public class BlogServlet extends HttpServlet {
 			   .include(request, response);
 		// suite traitement
 	}
+	
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		System.out.println("Coucou");
+	}
 
 }

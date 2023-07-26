@@ -7,6 +7,9 @@
 <title>Blog</title>
 </head>
 <body>
-<h1>Blog</h1>
+	<h1>Blog</h1>
+	<form action="" method="POST">
+		<button type="submit" >Valider</button>
+	</form> 
 </body>
 </html>
