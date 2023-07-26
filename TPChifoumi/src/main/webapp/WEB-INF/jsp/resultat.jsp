@@ -21,6 +21,6 @@
 <p>Le choix de l'ordi: 
 	<img src="<%= request.getContextPath() %>/assets/img/<%=serverChoice %>.png">
 </p>
-<a href="<%= request.getContextPath() %>/tentative">Rejouer</a>
+<a href="<%= request.getContextPath() %>">Rejouer</a>
 </body>
 </html>

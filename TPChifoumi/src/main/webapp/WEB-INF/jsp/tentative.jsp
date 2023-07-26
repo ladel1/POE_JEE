@@ -11,7 +11,7 @@
 			<h1>Tentative</h1>
 		</header>
 		<main>
-			<form action="<%= request.getContextPath() %>/traitement" method="POST">
+			<form action="" method="POST">
 				<button type="submit" name="userChoice" value="0" >
 					<img src="<%= request.getContextPath() %>/assets/img/0.png" alt="CHI" >
 				</button>

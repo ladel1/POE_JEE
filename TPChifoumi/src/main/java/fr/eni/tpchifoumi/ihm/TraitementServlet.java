@@ -8,7 +8,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Random;
 
-@WebServlet("/traitement")
+@WebServlet("")
 public class TraitementServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
@@ -22,6 +22,12 @@ public class TraitementServlet extends HttpServlet {
 		
 	};	
 	Random rand = new Random();
+	
+	
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		req.getRequestDispatcher("/WEB-INF/jsp/tentative.jsp").forward(req, resp);
+	}
        
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String user = request.getParameter("userChoice");
