@@ -1,5 +1,6 @@
 package fr.eni.tpchifoumi.ihm;
 
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -26,7 +27,11 @@ public class TraitementServlet extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.getRequestDispatcher("/WEB-INF/jsp/tentative.jsp").forward(req, resp);
+//		String str = null;
+//		str.charAt(0);
+		
+		RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/jsp/tentative.jsp");
+		rd.forward(req, resp);
 	}
        
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

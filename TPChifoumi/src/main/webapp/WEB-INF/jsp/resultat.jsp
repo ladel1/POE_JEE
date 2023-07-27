@@ -1,6 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" 
+	contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"
+    isErrorPage="false"
+    errorPage="/WEB-INF/errors/jsp-errors.jsp"
+    %>
 <%
+/* 	int a = Integer.parseInt("azerty"); */
 	// recup depuis la servlet
 	String message = (String) request.getAttribute("message");
 	int userChoice = (int) request.getAttribute("userChoice");
