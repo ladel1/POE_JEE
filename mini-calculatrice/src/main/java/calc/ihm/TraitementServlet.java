@@ -7,9 +7,16 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/calculer")
+@WebServlet("")
 public class TraitementServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {		
+		req.getRequestDispatcher("/WEB-INF/calculatrice.jsp").forward(req, resp);
+		
+	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// Récuperation des parapeteres
@@ -51,9 +58,8 @@ public class TraitementServlet extends HttpServlet {
 				System.out.println("Erreur");
 			}			
 		}
-		response.setHeader("prenom", "Adel");
-		response.setContentType("text/html");
-		response.getWriter().write("<h1> Resultats %.2f </h1>".formatted(results));
+		request.setAttribute("result", results);
+		request.getRequestDispatcher("/WEB-INF/calculatrice.jsp").forward(request, response);
 	}
 
 }
