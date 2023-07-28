@@ -3,7 +3,10 @@ package fr.eni.miniallocine.dal.jdbc;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 import fr.eni.miniallocine.bo.Titre;
@@ -15,6 +18,8 @@ public class TitreDaoImpl implements TitreDAO {
 			+ "(nom,synopsis,realisateur,genre,date_sortie,duree,type )"
 			+ " VALUES (?,?,?,?,?,?,?)";
 	
+	private static String SELECT_ALL_TITRE = "SELECT * FROM titres";
+	
 	@Override
 	public Titre selectOne(int id) {
 		// TODO Auto-generated method stub
@@ -23,7 +28,23 @@ public class TitreDaoImpl implements TitreDAO {
 
 	@Override
 	public List<Titre> selectAll() {
-		// TODO Auto-generated method stub
+		// 
+		try(Connection connection = ConnectionProvider.getConnection()){
+			Statement stmt = connection.createStatement();
+			ResultSet rs =stmt.executeQuery(SELECT_ALL_TITRE);
+			List<Titre> titres = new ArrayList<Titre>();
+			while(rs.next()) {
+				Titre titre = new Titre(rs.getInt("id"), rs.getString("nom"),
+						rs.getString("synopsis"), rs.getString("realisateur"),
+						rs.getString("genre"), rs.getDate("date_sortie").toLocalDate(), 
+						rs.getInt("duree"), rs.getBoolean("type"));
+				titres.add(titre);
+			}
+			return titres;
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
 		return null;
 	}
 

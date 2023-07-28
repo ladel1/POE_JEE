@@ -19,4 +19,14 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  <servlet>
+    <description></description>
+    <display-name>ListeTitreServlet</display-name>
+    <servlet-name>ListeTitreServlet</servlet-name>
+    <servlet-class>fr.eni.miniallocine.ihm.ListeTitreServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ListeTitreServlet</servlet-name>
+    <url-pattern>/titres</url-pattern>
+  </servlet-mapping>
 </web-app>
