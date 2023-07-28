@@ -20,6 +20,8 @@ public class TitreDaoImpl implements TitreDAO {
 	
 	private static String SELECT_ALL_TITRE = "SELECT * FROM titres";
 	
+	private static String DELETE_TITRE = "DELETE titres WHERE id = ?";
+	
 	@Override
 	public Titre selectOne(int id) {
 		// TODO Auto-generated method stub
@@ -76,7 +78,16 @@ public class TitreDaoImpl implements TitreDAO {
 
 	@Override
 	public void delete(int id) {
-		// TODO Auto-generated method stub
+		try(
+			Connection connection = ConnectionProvider.getConnection()	
+				){
+			PreparedStatement pstmt = connection.prepareStatement(DELETE_TITRE);
+			pstmt.setInt(1, id);
+			pstmt.executeUpdate();
+		}catch( SQLException e ) {
+			e.printStackTrace();
+		}
+		
 		
 	}
 

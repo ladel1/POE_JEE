@@ -12,6 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Liste films & séries</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   </head>
   <body>    
     <div class="container-fluid">
@@ -50,23 +51,69 @@
 	    				</thead>
 	    				<tbody>
 	    					<% for( Titre titre:titres ){ %>
-	    						<tr>
+	    						<tr id="<%= titre.getId() %>" >
 	    							<td> <%= titre.getId() %> </td>
 	    							<td> <%= titre.getNom() %> </td>
 	    							<td> <%= titre.getSynopsis().substring(0, titre.getSynopsis().length()<30? titre.getSynopsis().length() : 30) %> </td>
 	    							<td> <%= titre.getGenre() %> </td>
 	    							<td> <%= titre.getDateSortie() %> </td>
 	    							<td> <%= titre.isType()?"Série":"Film" %> </td>    							
-	    							<td> XXXXXXX </td>
+	    							<td>
+										<!-- Button trigger modal -->
+										<button type="button" class="btn btn-info" 										
+										data-nom="<%= titre.getNom() %>"
+										data-synopsis="<%= titre.getSynopsis()%>"
+										data-genre="<%= titre.getGenre() %>"
+										data-date="<%= titre.getDateSortie() %>"
+										data-type="<%= titre.isType()?"Série":"Film" %>"
+										data-realisateur="<%= titre.getRealisateur()%>"
+										data-bs-toggle="modal" data-bs-target="#exampleModal" >
+										
+										  <i class="fa-solid fa-eye"></i>
+										</button>	 
+										<form action="" style="display:inline" method="post" onSubmit="return confirm('Voulez-vous vraiment supprimer ce titre?');">										
+	    									<input type="hidden" name="id" value="<%= titre.getId() %>" >
+	    									<button  type="submit" class="btn btn-danger"> 
+	    										<i class="fa-solid fa-trash"></i> 
+	    									</button>
+										</form>   								    								
+	    							</td>
 	    						</tr>
 	    					<% } %>
 	    				</tbody>
 	    			</table>    			
     			</div>
     		</div>
+			<!-- Modal -->
+			<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			  <div class="modal-dialog">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <h1 class="modal-title fs-5" id="titre">Modal title</h1>
+			        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			      </div>
+			      <div class="modal-body">
+			        <div class="row text-center">
+			        	<p id="synopsis">
+			        		blabalbalbal
+			        	</p>
+			        	<hr>
+			        	<p> 
+			        	Réalisateur: <span id="real" ></span>
+			        	Date de sortie: <span id="sortie"></span>
+			        	</p>			        	
+			        </div> 			        
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+			      </div>
+			    </div>
+			  </div>
+			</div>    		
     	</main>
     	<footer></footer>
-    </div>    
+    </div>       
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    <script src="<%=request.getContextPath() %>/assets/js/main.js"></script>
   </body>
 </html>

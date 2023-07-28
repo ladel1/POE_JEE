@@ -22,5 +22,13 @@ public class ListeTitreServlet extends HttpServlet {
 		request.getRequestDispatcher("/WEB-INF/pages/titres.jsp")
 		.forward(request, response);
 	}
+	
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		int id = Integer.parseInt(req.getParameter("id"));
+		TitreManager titreManager = new TitreManager();
+		titreManager.supprimerTitre(id);
+		resp.sendRedirect(req.getContextPath()+"/titres");
+	}
 
 }

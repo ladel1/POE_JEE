@@ -17,5 +17,9 @@ public class TitreManager {
 		// Validation ????				
 		titreDao.insert(titre);
 	}
+
+	public void supprimerTitre(int id) {
+		titreDao.delete(id);
+	}
 	
 }
