@@ -4,19 +4,10 @@
     <description></description>
     <display-name>MainServlet</display-name>
     <servlet-name>MainServlet</servlet-name>
-    <servlet-class>fr.eni.ecole.bo.MainServlet</servlet-class>
+    <servlet-class>fr.eni.ecole.ihm.MainServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>MainServlet</servlet-name>
     <url-pattern>/home</url-pattern>
   </servlet-mapping>
-  <display-name>demoJboss</display-name>
-  <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
-    <welcome-file>index.htm</welcome-file>
-    <welcome-file>index.jsp</welcome-file>
-    <welcome-file>default.html</welcome-file>
-    <welcome-file>default.htm</welcome-file>
-    <welcome-file>default.jsp</welcome-file>
-  </welcome-file-list>
 </web-app>
