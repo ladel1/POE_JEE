@@ -7,9 +7,14 @@
     <persistence-unit name="myPersistenceUnit" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <class>fr.eni.ecole.bo.Compte</class>
-        
-        <!-- Specify other entity classes as needed -->
-
+        <class>fr.eni.ecole.bo.Livre</class>
+        <class>fr.eni.ecole.bo.Adresse</class>
+        <class>fr.eni.ecole.bo.Client</class> 
+        <class>fr.eni.ecole.bo.Spectateur</class> 
+        <class>fr.eni.ecole.bo.Film</class>        
+        <class>fr.eni.ecole.bo.Personne</class> 
+        <class>fr.eni.ecole.bo.Medecin</class> 
+        <class>fr.eni.ecole.bo.Patient</class> 
         <properties>
             <!-- Configure your database connection here -->
             <property name="javax.persistence.jdbc.url" value="jdbc:sqlserver://localhost:1433;databaseName=DEMO_COMPTES_DB;encrypt=false"/>
