@@ -18,30 +18,28 @@ import java.util.Map;
 public class BaseServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String path = request.getPathInfo();
 		List<Object> route = getControllerFromPath(path);
-		Class<?> c = HomeController.class;
+		Class<?> _class = (Class<?>) route.get(0);
 		try {
-			Constructor<?> cons = c.getDeclaredConstructor();
+			Constructor<?> cons = _class.getDeclaredConstructor();
 			Object inst = cons.newInstance();
-			Method m = c.getMethod("index");
-			m.invoke(inst);
-		} catch (NoSuchMethodException | SecurityException | InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
-			// TODO Auto-generated catch block
+			Method m = _class.getMethod((String)route.get(1),
+					HttpServletRequest.class,
+					HttpServletResponse.class);
+			m.invoke(inst,request,response);
+		} catch (NoSuchMethodException | SecurityException | InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {			
 			e.printStackTrace();
 		}
 	}
-
+	// router
 	private List<Object> getControllerFromPath(String path) {
 		Map<String,List<Object>> router = new HashMap<String, List<Object>>();	
 		// route ( url => Controller & méthode )
 		router.put("/home", List.of(HomeController.class,"index") );
+		router.put("/*", List.of(HomeController.class,"index") );
+		router.put("/contact", List.of(HomeController.class,"contact") );
 		return router.get(path);
 	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-	}
-
 }

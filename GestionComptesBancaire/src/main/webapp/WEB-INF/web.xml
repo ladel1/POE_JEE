@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://jakarta.ee/xml/ns/jakartaee" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd" id="WebApp_ID" version="5.0">
+  <display-name>GestionComptesBancaire</display-name>
+  <servlet>
+    <description></description>
+    <display-name>DetailsClientServlet</display-name>
+    <servlet-name>DetailsClientServlet</servlet-name>
+    <servlet-class>fr.eni.comptesbancaire.ihm.DetailsClientServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DetailsClientServlet</servlet-name>
+    <url-pattern>/DetailsClientServlet</url-pattern>
+  </servlet-mapping>
+</web-app>
