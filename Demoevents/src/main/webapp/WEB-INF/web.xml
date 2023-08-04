@@ -8,9 +8,9 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>HomeServlet</servlet-name>
-    <url-pattern>/HomeServlet</url-pattern>
+    <url-pattern>/home</url-pattern>
   </servlet-mapping>
-  <display-name>DemoCookie</display-name>
+  <display-name>Demoevents</display-name>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.htm</welcome-file>
@@ -19,14 +19,7 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
-  <servlet>
-    <description></description>
-    <display-name>LoginServlet</display-name>
-    <servlet-name>LoginServlet</servlet-name>
-    <servlet-class>fr.eni.ecole.ihm.LoginServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>LoginServlet</servlet-name>
-    <url-pattern>/LoginServlet</url-pattern>
-  </servlet-mapping>
+  <listener>
+    <listener-class>fr.eni.ecole.ihm.RequestListener</listener-class>
+  </listener>
 </web-app>
