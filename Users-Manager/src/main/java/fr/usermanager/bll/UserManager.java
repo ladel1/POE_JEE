@@ -23,11 +23,14 @@ public class UserManager {
 	/**
 	 *  ***************  End *****************************
 	 */
+	
+	
+	
 	/**
 	 *  *****************  LOGIC METHODS 
-	 * @throws BLLException *****************
+	 *
 	 */
-	
+
 	UserDao userDao;
 	
 	public void registerUser(User user) throws BLLException {
@@ -41,17 +44,25 @@ public class UserManager {
 		// ajouter 
 		userDao.createUser(user);		
 	}
-	
+	/**
+	 * 
+	 * @param email
+	 * @param password
+	 * @return
+	 * @throws BLLException
+	 */
 	public User login(String email,String password) throws BLLException {
+		 
 		Validate.isValide(email,password);
-		User user = userDao.selectUserByEmail(email);
-		if(user == null) {
-			throw new BLLException("L'email ou le mot de passe est incorrect!");
-		}		
-		if(!PasswordHasher.verifyPassword(password, user.getPassword())) {
-			throw new BLLException("L'email ou le mot de passe est incorrect!");
+		try {
+			User user = userDao.selectUserByEmail(email);
+			if(!PasswordHasher.verifyPassword(password, user.getPassword())) {
+				throw new BLLException("L'email ou le mot de passe est incorrect!");
+			}
+			return user;
+		} catch (Exception e) {
+			throw new BLLException(e.getMessage());			
 		}
-		return user;
 	}
 	
 }
