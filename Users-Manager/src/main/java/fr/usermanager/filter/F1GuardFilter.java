@@ -18,11 +18,14 @@ import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 
 import fr.usermanager.bo.User;
-@WebFilter(urlPatterns = "/mon-compte/*",
-dispatcherTypes = {
-		DispatcherType.REQUEST
-})
-public class GuardFilter extends HttpFilter implements Filter {
+
+@WebFilter(
+		urlPatterns = "/mon-compte/*",
+		dispatcherTypes = {
+				DispatcherType.REQUEST
+		}
+		)
+public class F1GuardFilter extends HttpFilter implements Filter {
        
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		System.out.println("Simple Filter");

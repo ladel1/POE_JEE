@@ -16,13 +16,13 @@ import java.io.IOException;
 
 import fr.usermanager.bo.User;
 
-
-@WebFilter(urlPatterns = "/mon-compte/admin/*",
-			dispatcherTypes = {
-					DispatcherType.REQUEST
-			}
+@WebFilter(
+		urlPatterns = "/mon-compte/admin/*",
+		dispatcherTypes = {
+				DispatcherType.REQUEST
+		}
 		)
-public class GuardAdminFilter extends HttpFilter implements Filter {
+public class F2GuardAdminFilter extends HttpFilter implements Filter {
 
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		System.out.println("Admin Filtre");

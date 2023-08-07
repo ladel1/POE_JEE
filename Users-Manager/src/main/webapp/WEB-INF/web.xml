@@ -30,16 +30,6 @@
     <servlet-name>MyAccountServlet</servlet-name>
     <url-pattern>/mon-compte</url-pattern>
   </servlet-mapping>
-  <filter>
-    <display-name>GuardFilter</display-name>
-    <filter-name>GuardFilter</filter-name>
-    <filter-class>fr.usermanager.filter.GuardFilter</filter-class>
-  </filter>
-  <filter-mapping>
-    <filter-name>GuardFilter</filter-name>
-    <url-pattern>/mon-compte/*</url-pattern>
-    <dispatcher>REQUEST</dispatcher>
-  </filter-mapping>
   <servlet>
     <description></description>
     <display-name>ProfileServlet</display-name>
@@ -60,14 +50,4 @@
     <servlet-name>AdminServlet</servlet-name>
     <url-pattern>/mon-compte/admin</url-pattern>
   </servlet-mapping>
-  <filter>
-    <display-name>GuardAdminFilter</display-name>
-    <filter-name>GuardAdminFilter</filter-name>
-    <filter-class>fr.usermanager.filter.GuardAdminFilter</filter-class>
-  </filter>
-  <filter-mapping>
-    <filter-name>GuardAdminFilter</filter-name>
-    <url-pattern>/mon-compte/admin/*</url-pattern>
-    <dispatcher>REQUEST</dispatcher>
-  </filter-mapping>
 </web-app>
