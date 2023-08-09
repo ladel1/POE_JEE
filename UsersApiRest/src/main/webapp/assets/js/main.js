@@ -144,7 +144,31 @@ function nav(){
 document.querySelector("#add-user-btn").addEventListener("click",
         // 
         function(event){
-            alert("azertyu")
+            
+            const user = {};
+            user.firstname = document.querySelector("#firstnamePersist").value;
+            user.lastname = document.querySelector("#lastnamePersist").value;
+            user.id = document.querySelector("#idPersist").value;
+            user.address = document.querySelector("#addressPersist").value;
+            user.age = document.querySelector("#agePersist").value;
+            console.log(user);
+            // validation !!!
+
+            // requete http (POST AJAX)
+            fetch(ENDPOINT+"/users",{
+                method:'POST',
+                headers:{
+                    'Accept':'application/json',
+                    'Content-Type':'application/json'
+                },
+                body: JSON.stringify(user)
+            })
+            .then((response)=>response.json())
+            .then( (data)=>{
+                console.log("******* Reponse de API ***********");
+                console.log(data);
+            })
+
         }
     );
 

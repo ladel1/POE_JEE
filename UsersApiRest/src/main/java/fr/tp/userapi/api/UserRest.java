@@ -3,7 +3,9 @@ package fr.tp.userapi.api;
 import java.util.List;
 
 import fr.tp.userapi.bo.User;
+import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.GET;
+import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
@@ -35,6 +37,14 @@ public class UserRest {
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<User> getUsers() {
 		return users;
+	}
+	
+	@POST
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public User addUser(User user) {
+		user.setAddress("Niort");
+		return user;
 	}
 	
 	
