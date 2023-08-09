@@ -5,6 +5,6 @@ main{
 .nav-link{
     cursor: pointer;
 }
-#composant-liste-utilisateur,#composant-detail-utilisateur{
+#composant-liste-utilisateur,#composant-detail-utilisateur,#composant-ajout-utilisateur{
     display: none;
 }

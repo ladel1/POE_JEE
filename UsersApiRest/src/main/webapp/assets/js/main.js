@@ -1,11 +1,21 @@
+/**
+ * URL de l'api
+ */
 const ENDPOINT = "http://localhost:8080/UsersApiRest/api";
 
+/**
+ * cacher tous les composants
+ */
 function hideAll(){
    document.querySelector("#composant-accueil").style="display:none";
    document.querySelector("#composant-liste-utilisateur").style="display:none";
    document.querySelector("#composant-detail-utilisateur").style="display:none";
+   document.querySelector("#composant-ajout-utilisateur").style="display:none";
 }
-
+/**
+ * afficher le composant detail utlisateur
+ * @param {*} event 
+ */
 function detailUser(event){
     let id = event.target.getAttribute("data");
     const userDetailNode = document.querySelector("#composant-detail-utilisateur");
@@ -67,7 +77,9 @@ function onNavigate(event){
     // selectionner les composants
     const homeNode = document.querySelector("#composant-accueil");
     const usersNode = document.querySelector("#composant-liste-utilisateur");
+    const addUserNode = document.querySelector("#composant-ajout-utilisateur");
     const path = event.target.getAttribute("lien-rest")
+    // cacher tous les composants
     hideAll();
     if(path=="/"){
         // changer le titre de la page
@@ -76,7 +88,8 @@ function onNavigate(event){
         homeNode.style="display:block";
         // modifier l'url sans rafraichir la page
         history.pushState(null,null,"/accueil");
-    }else{
+    }
+    if(path=="/users"){
         document.title = "Liste utilisateurs";
         usersNode.style="display:block";
         history.pushState(null,null,"/liste-utilisateurs");
@@ -92,6 +105,11 @@ function onNavigate(event){
             }
         })
     }
+    if(path=="/users/add"){
+        document.title = "Ajouter un utilisateur";
+        addUserNode.style="display:block";
+        history.pushState(null,null,"/ajouter-utilisateur");
+    }
 }
 /**
  * Création de  liens de navigations
@@ -100,7 +118,8 @@ function nav(){
     const navBarNode =document.querySelector(".navbar-nav");
     const menu = [ 
         ["Accueil","/"], 
-        ["Liste d'utilisateurs","/users"]
+        ["Liste d'utilisateurs","/users"],
+        ["Ajoute un utilisateur","/users/add"]
                 ];
 
     for (const item of menu) {
@@ -116,7 +135,22 @@ function nav(){
         navBarNode.append(aNode);
     }
 }
+/**
+ * 
+ * Add User (POST Ajax)
+ * 
+ */
 
+document.querySelector("#add-user-btn").addEventListener("click",
+        // 
+        function(event){
+            alert("azertyu")
+        }
+    );
+
+
+
+/**
+ * start app
+ */
 nav();
-
-
