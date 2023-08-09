@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Users API REST</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/style.css">
   </head>
   <body>
     <div class="container-fluid">
@@ -26,10 +27,68 @@
                 </div>
               </nav>
         </header>
-        <main clss="row">
+        <main class="row">
+            <section id="composant-accueil">
+                <div class="row text-center mt-5">
+                    <h1>Users Api rest</h1>
+                </div>
+                <div class="row">
+                    <div class="col-8 offset-2 mt-3">
+                        <p><span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia magnam dolorum enim repudiandae ut facilis cupiditate vel aliquam illo veniam, commodi suscipit optio qui perferendis esse quidem placeat officiis atque.</span><span>Nam, sint dolorum dicta, deleniti vel necessitatibus eaque ea error obcaecati ut quasi illo autem accusamus itaque laudantium molestiae tempora eos sunt modi delectus temporibus. Dolor aperiam nam tempore quia.</span><span>A dicta iste minima vel quos nihil iusto dolorum eaque, totam nulla quod? Optio perferendis non animi est vel vero inventore quo porro, excepturi reprehenderit a eveniet mollitia quae repudiandae?</span><span>Ex nam totam earum ullam esse, suscipit eos libero! Consectetur veritatis reiciendis ad voluptas eligendi, exercitationem obcaecati eos dicta tempore, enim placeat modi aut quas tempora ex praesentium cum nobis.</span><span>Saepe dicta aliquam et ad voluptas ut quasi qui, adipisci, sequi aliquid quod. Eum, facere cumque! Ipsa, id incidunt adipisci, ipsam vitae perspiciatis quod est atque minus, fuga et labore.</span><span>Hic, id. Necessitatibus quas adipisci quam cupiditate! Dolorem porro dicta necessitatibus aliquam alias, nulla maiores quos. Ratione culpa sapiente praesentium sed libero quia provident cumque nobis molestiae non, distinctio voluptas.</span><span>Facilis est porro, officiis quaerat minima autem aspernatur qui provident eum. Rem repellendus quod, repellat molestias pariatur facere id. Nam pariatur laudantium error voluptate enim repellat eum magni atque? Hic.</span><span>Inventore rerum repudiandae voluptatem vero itaque hic pariatur aperiam amet velit ex eligendi architecto exercitationem nemo, commodi in praesentium ea at, molestias consectetur eius qui consequatur perspiciatis! Perferendis, commodi ab!</span><span>Nostrum quaerat, sequi, ipsum perferendis est dolores voluptatibus quidem perspiciatis eum sed corrupti dolore corporis nobis? Dolorem expedita ullam iusto dolorum quia eius voluptatem minus corporis, rem quam perferendis autem.</span><span>Ullam dicta expedita sed saepe facere neque quae, quas amet magni, reiciendis voluptas necessitatibus magnam voluptatem impedit? Aliquam, voluptate maiores earum ut totam consequatur at blanditiis soluta aspernatur, inventore et?</span></p>
+                    </div>
+                </div> 
+            </section> 
+            <section id="composant-liste-utilisateur">
+                <div class="row text-center mt-5">
+                    <h1>Liste utilisateurs</h1>
+                </div>
+                <div class="row">
+                    <div class="col-8 offset-2 mt-3">
+                        <table class="table table-primary" >
+                            <thead>
+                                <th>ID</th>
+                                <th>Prénom</th>
+                                <th>Nom</th>
+                                <th>Action</th>
+                            </thead>
+                            <tbody>
 
+                            </tbody>                            
+                        </table>
+                    </div>
+                </div>  
+            </section>     
+            <section id="composant-detail-utilisateur" >
+                <div class="row text-center mt-5">
+                    <h1>Détail utilisateur</h1>
+                </div>
+                <div class="row">
+                    <div class="col-8 offset-2 mt-4">
+                        <div class="mb-3">
+                            <label for="id" class="form-label">ID</label>
+                            <input type="number" readonly class="form-control" id="id" >
+                        </div>                          
+                        <div class="mb-3">
+                            <label for="firstname" class="form-label">Prénom</label>
+                            <input type="text" readonly class="form-control" id="firstname" >
+                        </div>  
+                        <div class="mb-3">
+                            <label for="lastname" class="form-label">Nom</label>
+                            <input type="text" readonly class="form-control" id="lastname" >
+                        </div>  
+                        <div class="mb-3">
+                            <label for="address" class="form-label">Adresse</label>
+                            <input type="text" readonly class="form-control" id="address" >
+                        </div>  
+                        <div class="mb-3">
+                            <label for="age" class="form-label">Age</label>
+                            <input type="number" readonly class="form-control" id="age" >
+                        </div>                                                                                       
+                    </div>
+                </div>  
+            </section>     
         </main>
-        <footer clss="row">
+        <footer class="row text-center">
             <p>UsersAPIREST &copy; 2023</p>
         </footer>
     </div>

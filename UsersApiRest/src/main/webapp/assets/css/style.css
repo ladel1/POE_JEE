@@ -1,0 +1,10 @@
+main{
+    min-height: 87vh;
+}
+
+.nav-link{
+    cursor: pointer;
+}
+#composant-liste-utilisateur,#composant-detail-utilisateur{
+    display: none;
+}
