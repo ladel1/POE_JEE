@@ -1,14 +1,50 @@
 const ENDPOINT = "http://localhost:8080/UsersApiRest/api";
 
-function createBtn(id){
-    const btnNode = document.createElement("button");
-    btnNode.setAttribute("class","btn btn-primary");
-    btnNode.innerText = "Détail"
-
-
-    return btnNode;
+function hideAll(){
+   document.querySelector("#composant-accueil").style="display:none";
+   document.querySelector("#composant-liste-utilisateur").style="display:none";
+   document.querySelector("#composant-detail-utilisateur").style="display:none";
 }
 
+function detailUser(event){
+    let id = event.target.getAttribute("data");
+    const userDetailNode = document.querySelector("#composant-detail-utilisateur");
+    // requete HTTP type get (Ajax)
+    fetch(ENDPOINT+`/users/${id}`)
+    .then((response)=>response.json())
+    .then((user)=>{
+        hideAll();
+        document.querySelector("#id").value= user.id;
+        document.querySelector("#firstname").value= user.firstname;
+        document.querySelector("#lastname").value= user.lastname;
+        document.querySelector("#address").value= user.address;
+        document.querySelector("#age").value= user.age;
+        // afficher le composant détail utilisateur
+        userDetailNode.style= "display:block";
+    })
+
+}
+
+/**
+ * cette fonction permet de créer un bouton
+ * @param { id de l'utilisateur} id 
+ * @returns 
+ */
+function createBtn(id){
+    // créer la balise <button>
+    const btnNode = document.createElement("button");
+    // ajouter au <button> la class "btn btn-primary"
+    btnNode.setAttribute("class","btn btn-primary");
+    btnNode.innerText = "Détail"
+    btnNode.setAttribute("data",id);
+    btnNode.addEventListener("click",detailUser);
+    return btnNode;
+}
+/**
+ * cette fonction permet créer la balise <tr> et de la remplir avec les <td>
+ * @param { Object de class Bean bo.User  } user 
+ * @returns 
+ */
 function createTrNode(user){
     const trNode = document.createElement("tr");    
     const tdIdNode = document.createElement("td");
@@ -22,22 +58,29 @@ function createTrNode(user){
     trNode.append(tdIdNode,tdFirstnameNode,tdLastnameNode,tdActionsNode);
     return trNode;
 }
-
+/**
+ * Cette fonction sera appeler à chaque fois que l'utilisateur clique sur les 
+ * liens de navigation
+ * @param {*} event 
+ */
 function onNavigate(event){
+    // selectionner les composants
     const homeNode = document.querySelector("#composant-accueil");
     const usersNode = document.querySelector("#composant-liste-utilisateur");
     const path = event.target.getAttribute("lien-rest")
+    hideAll();
     if(path=="/"){
+        // changer le titre de la page
         document.title = "Accueil";
+        // changer la visibilité de composant
         homeNode.style="display:block";
-        usersNode.style="display:none";
+        // modifier l'url sans rafraichir la page
         history.pushState(null,null,"/accueil");
     }else{
         document.title = "Liste utilisateurs";
-        homeNode.style="display:none";
         usersNode.style="display:block";
         history.pushState(null,null,"/liste-utilisateurs");
-        // Ajax
+        // requete HTTP type get (Ajax)        
         fetch(ENDPOINT+"/users")
         .then((response)=>response.json())
         .then((users)=>{
@@ -50,7 +93,9 @@ function onNavigate(event){
         })
     }
 }
-
+/**
+ * Création de  liens de navigations
+ */
 function nav(){
     const navBarNode =document.querySelector(".navbar-nav");
     const menu = [ 
@@ -59,10 +104,14 @@ function nav(){
                 ];
 
     for (const item of menu) {
+        // créer un balise <a>
         const aNode = document.createElement("a");
+        // ajouter l'attribut class à la balise <a>
         aNode.setAttribute("class","nav-link");
+        // ajouter un text à la balise <a>
         aNode.innerText =  item[0];
         aNode.setAttribute("lien-rest",item[1]);
+        // ajouter un écouteur de type clique à la balise <a>
         aNode.addEventListener("click",onNavigate)
         navBarNode.append(aNode);
     }
