@@ -14,6 +14,18 @@ public class Patient extends Personne implements Serializable {
 	public Patient() {
 		// TODO Auto-generated constructor stub
 	}
+	
+	public Patient(String nom, String prenom, int age, String nss, String diagnostic) {
+		super(nom, prenom, age);
+		this.nss = nss;
+		this.diagnostic = diagnostic;
+	}
+
+
+
+
+
+
 
 	public String getNss() {
 		return nss;
@@ -30,6 +42,12 @@ public class Patient extends Personne implements Serializable {
 	public void setDiagnostic(String diagnostic) {
 		this.diagnostic = diagnostic;
 	}
+
+	@Override
+	public String toString() {
+		return "Patient [nss=" + nss + ", diagnostic=" + diagnostic + ", toString()=" + super.toString() + "]";
+	}
+
 	
 	
 	

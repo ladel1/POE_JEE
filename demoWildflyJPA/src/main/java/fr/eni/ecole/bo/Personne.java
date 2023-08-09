@@ -10,11 +10,13 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
+import jakarta.persistence.NamedQuery;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "type")
 @DiscriminatorValue(value="p")
+@NamedQuery(name = "findAllPatients",query = "SELECT p FROM Personne p WHERE p.nom LIKE :nom")
 public class Personne implements Serializable {
 
 	@Id
@@ -27,6 +29,17 @@ public class Personne implements Serializable {
 	public Personne() {
 		// TODO Auto-generated constructor stub
 	}
+	
+	
+
+	public Personne(String nom, String prenom, int age) {
+		super();
+		this.nom = nom;
+		this.prenom = prenom;
+		this.age = age;
+	}
+
+
 
 	public int getId() {
 		return id;
@@ -58,6 +71,11 @@ public class Personne implements Serializable {
 
 	public void setAge(int age) {
 		this.age = age;
+	}
+
+	@Override
+	public String toString() {
+		return "Personne [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", age=" + age + "]";
 	}
 	
 	
