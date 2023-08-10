@@ -51,6 +51,7 @@ function deleteUser(event){
             if(response.status==204){
                 if (event.target.parentNode && event.target.parentNode.parentNode) {
                     event.target.parentNode.parentNode.remove();
+                    //event.target.closest("tr").remove();
                 }
                 
             }
