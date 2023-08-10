@@ -2,9 +2,21 @@ package fr.tp.userapi.bo;
 
 import java.io.Serializable;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.NamedQuery;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "users")
+@NamedQuery(name="findAll",query="SELECT u FROM User u")
 public class User implements Serializable{
 	private static final long serialVersionUID = -8443452436803963465L;
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String firstname;
 	private String lastname;

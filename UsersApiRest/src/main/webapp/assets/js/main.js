@@ -11,6 +11,8 @@ function hideAll(){
    document.querySelector("#composant-liste-utilisateur").style="display:none";
    document.querySelector("#composant-detail-utilisateur").style="display:none";
    document.querySelector("#composant-ajout-utilisateur").style="display:none";
+   // re-init div #infos
+   document.querySelector("#infos").innerHTML=""
 }
 /**
  * afficher le composant detail utlisateur
@@ -148,7 +150,7 @@ document.querySelector("#add-user-btn").addEventListener("click",
             const user = {};
             user.firstname = document.querySelector("#firstnamePersist").value;
             user.lastname = document.querySelector("#lastnamePersist").value;
-            user.id = document.querySelector("#idPersist").value;
+            // user.id = document.querySelector("#idPersist").value;
             user.address = document.querySelector("#addressPersist").value;
             user.age = document.querySelector("#agePersist").value;
             console.log(user);
@@ -163,10 +165,19 @@ document.querySelector("#add-user-btn").addEventListener("click",
                 },
                 body: JSON.stringify(user)
             })
-            .then((response)=>response.json())
-            .then( (data)=>{
-                console.log("******* Reponse de API ***********");
-                console.log(data);
+            .then((response)=>{
+                if(response.status == 201){
+                    document.querySelector("#infos").innerHTML="";
+                    const successNode = document.createElement("div");
+                    successNode.setAttribute("class","alert alert-success");
+                    successNode.innerText = "Utilisateur a bien été créé";
+                    document.querySelector("#infos").append(successNode);
+                    // init fields
+                    document.querySelector("#firstnamePersist").value=""
+                    document.querySelector("#lastnamePersist").value=""
+                    document.querySelector("#addressPersist").value=""
+                    document.querySelector("#agePersist").value=""
+                }
             })
 
         }

@@ -2,7 +2,9 @@ package fr.tp.userapi.api;
 
 import java.util.List;
 
+import fr.tp.userapi.bll.UserManager;
 import fr.tp.userapi.bo.User;
+import jakarta.inject.Inject;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
@@ -10,41 +12,32 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
 
 @Path("/users")
 public class UserRest {
 
-	private List<User> users;
-	
-	public UserRest() {
-		users = List.of(
-				new User(1, "Olivier", "Dupont", "Paris", 30),
-				new User(2, "Olivier2", "Dupont2", "Paris", 30),
-				new User(3, "Olivier3", "Dupont3", "Paris", 30),
-				new User(4, "Olivier4", "Dupont4", "Paris", 30),
-				new User(5, "Olivier5", "Dupont5", "Paris", 30)
-				);
-	}
+
+	private UserManager userManager = new  UserManager();
 	
 	@GET
 	@Path("/{id:[0-9]+}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public User getOneUser(@PathParam("id") int id) {
-		return users.get(id-1);
+		return userManager.getUser(id);
 	}
 	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<User> getUsers() {
-		return users;
+		return userManager.getUsers();
 	}
 	
 	@POST
-	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public User addUser(User user) {
-		user.setAddress("Niort");
-		return user;
+	public Response addUser(User user) {
+		userManager.addUser(user);
+		return Response.created(null).build();
 	}
 	
 	
