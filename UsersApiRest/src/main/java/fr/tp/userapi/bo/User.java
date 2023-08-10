@@ -6,12 +6,16 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "users")
-@NamedQuery(name="findAll",query="SELECT u FROM User u")
+@NamedQueries({
+	@NamedQuery(name="findAll",query="SELECT u FROM User u"),
+	@NamedQuery(name="deleteOne",query="DELETE FROM User u WHERE u.id = :id ")
+})
 public class User implements Serializable{
 	private static final long serialVersionUID = -8443452436803963465L;
 	

@@ -38,18 +38,43 @@ function detailUser(event){
 }
 
 /**
+ * pour supprimer un user dans BDD (AJAX)
+ * @param {*} event 
+ */
+function deleteUser(event){
+    if(confirm("Voulez-vous vraiment supprimer cet utilisateur")){
+        let id = event.target.getAttribute("data");
+        fetch(ENDPOINT+`/users/${id}`,{
+            method:"DELETE"
+        })
+        .then((response)=>{
+            if(response.status==204){
+                if (event.target.parentNode && event.target.parentNode.parentNode) {
+                    event.target.parentNode.parentNode.remove();
+                }
+                
+            }
+        })
+        .catch((error)=>{
+            console.log(error);
+        })
+    }
+}
+
+/**
  * cette fonction permet de créer un bouton
  * @param { id de l'utilisateur} id 
  * @returns 
  */
-function createBtn(id){
+function createBtn(id,name,className,callbackFn){
     // créer la balise <button>
     const btnNode = document.createElement("button");
     // ajouter au <button> la class "btn btn-primary"
-    btnNode.setAttribute("class","btn btn-primary");
-    btnNode.innerText = "Détail"
+    btnNode.setAttribute("class",className);
+    btnNode.innerText = name;
+    btnNode.style="margin:0 3px";
     btnNode.setAttribute("data",id);
-    btnNode.addEventListener("click",detailUser);
+    btnNode.addEventListener("click",callbackFn);
     return btnNode;
 }
 /**
@@ -66,7 +91,8 @@ function createTrNode(user){
     const tdLastnameNode = document.createElement("td");
     tdLastnameNode.innerText = user.lastname;
     const tdActionsNode = document.createElement("td");
-    tdActionsNode.append(createBtn(user.id));
+    tdActionsNode.append(createBtn(user.id,"Détails","btn btn-primary",detailUser));
+    tdActionsNode.append(createBtn(user.id,"Supprimer","btn btn-danger",deleteUser));
     trNode.append(tdIdNode,tdFirstnameNode,tdLastnameNode,tdActionsNode);
     return trNode;
 }
