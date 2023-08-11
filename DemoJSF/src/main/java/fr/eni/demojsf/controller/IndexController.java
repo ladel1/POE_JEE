@@ -19,6 +19,9 @@ public class IndexController implements Serializable {
 	public String getTitle() {
 		return title;
 	}
+	
+	
+
 
 	public void setTitle(String title) {
 		this.title = title;

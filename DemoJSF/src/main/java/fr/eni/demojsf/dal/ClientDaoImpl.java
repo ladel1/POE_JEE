@@ -3,13 +3,18 @@ package fr.eni.demojsf.dal;
 import java.util.List;
 
 import fr.eni.demojsf.bo.Client;
+import fr.eni.demojsf.helper.EMF;
+import jakarta.persistence.EntityManager;
 
 public class ClientDaoImpl implements ClientDao {
 
+	EntityManager em = EMF.getEntityManager();
+	
 	@Override
 	public void insert(Client client) {
-		// TODO Auto-generated method stub
-		
+		em.getTransaction().begin();
+		em.persist(client);
+		em.getTransaction().commit();
 	}
 
 	@Override
