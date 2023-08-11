@@ -9,6 +9,6 @@ public interface ClientDao {
 	void insert(Client client);
 	List<Client> findAll();
 	Client findOne(int id);
-	void remove(int id);
+	void remove(Client client);
 	
 }

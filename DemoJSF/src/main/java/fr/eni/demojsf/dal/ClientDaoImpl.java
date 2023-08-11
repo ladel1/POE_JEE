@@ -5,6 +5,8 @@ import java.util.List;
 import fr.eni.demojsf.bo.Client;
 import fr.eni.demojsf.helper.EMF;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.Query;
+import jakarta.persistence.TypedQuery;
 
 public class ClientDaoImpl implements ClientDao {
 
@@ -19,20 +21,20 @@ public class ClientDaoImpl implements ClientDao {
 
 	@Override
 	public List<Client> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		TypedQuery<Client> tQuery = em.createNamedQuery("findAll",Client.class);
+		return tQuery.getResultList();
 	}
 
 	@Override
-	public Client findOne(int id) {
-		// TODO Auto-generated method stub
-		return null;
+	public Client findOne(int id) { 
+		return em.find(Client.class, id);
 	}
 
 	@Override
-	public void remove(int id) {
-		// TODO Auto-generated method stub
-		
+	public void remove(Client client) {
+		em.getTransaction().begin();		
+		em.remove(client);		
+		em.getTransaction().commit();		
 	}
 
 }
